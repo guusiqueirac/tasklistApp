@@ -1,6 +1,6 @@
+import { Task } from './../shared/task';
 import { Component, OnInit } from '@angular/core';
 import { TaskService } from '../shared/task.service';
-import { Task } from '../shared/task';
 import { Router } from '@angular/router';
 
 @Component({
@@ -19,16 +19,8 @@ export class TaskListPage implements OnInit {
    this.tasks = this.taskService.getAll();
   }
 
-  novaTarefa(task: Task) {
-
-  }
-
-  editarTarefa() {
-
-  }
-
-  removerTarefa() {
-
+  removerTarefa(task: Task) {
+    this.taskService.delete(task.id);
   }
 
 }

@@ -10,7 +10,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class TaskFormPage implements OnInit {
 
-  task: Task [] = new Task();
+  task: Task = new Task();
   title: string = "Nova Tarefa";
 
   constructor(private taskService: TaskService,
@@ -26,7 +26,8 @@ export class TaskFormPage implements OnInit {
   }
 
   onSubmit() {
-
+    this.taskService.save(this.task);
+    this.router.navigate(['/']);
   }
 
 }

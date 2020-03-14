@@ -26,15 +26,26 @@ export class TaskService {
   }
 
   getById(id: number) {
-
+    const task = this.tasks.find( (value) => value.id == id);
+    return task;
   }
 
   save(task: Task) {
-
+    if (task.id) {
+      const TaskArr = this.getById(task.id);
+      TaskArr.description = task.description;
+      TaskArr.completed = task.completed;
+    } else {
+      const lastID = this.tasks[this.tasks.length -1].id;
+      task.id = lastID +1;
+      task.completed = false;
+      this.tasks.push(task);
+    }
   }
 
   delete(id: number) {
-
+    const taskIndex = this.tasks.findIndex( (value) => value.id == id);
+    this.tasks.splice(taskIndex, 1);
   }
 
 
